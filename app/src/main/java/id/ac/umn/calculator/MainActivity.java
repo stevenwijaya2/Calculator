@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tvResult.setText("0");
-
             }
         });
 
@@ -85,20 +84,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(flagFinish){
-                    flagFinish=false;
-                    flagFirst=true;
+                    flagFinish = false;
+                    flagFirst = true;
                 }
-
-                flagOP2=false;
+                flagOP2 = false;
                 result = tvResult.getText().toString();
-                if(tvResult.getText().toString().equals("Infinity")||tvResult.getText().toString().equals("NaN")){
+                if(tvResult.getText().toString().equals("Infinity") || tvResult.getText().toString().equals("NaN")){
                     result = "0";
                 }
-
                 if(result.length()>0){
                     result = result.substring(0,result.length()-1);
                 }
-
                 if(result.length()<=0){
                     result = "0";
                 }
@@ -106,320 +102,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnDivide.setOnClickListener(new View.OnClickListener() {
+        btnComma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                flagFinish=false;
-                flagOP2=true;
-                if(!flagDoubleClick){
-                    if(flagFirst){
-                        operand1 = Double.parseDouble(tvResult.getText().toString());
-                        flagFirst=false;
-                        flagDoubleClick=false;
-                    }
-                    else {
-                        operand2 = Double.parseDouble(tvResult.getText().toString());
-                        hitung(operand1,operand2);
-                        operand1=Double.parseDouble(tvResult.getText().toString());
-                        operand2=0.0;
-                        flagDoubleClick=true;
-                    }
-                }
-                tvOperator.setText("/");
-                flagAdd = false;
-                flagMinus = false;
-                flagDivide = true;
-                flagMulti = false;
-            }
-        });
-
-        btnSeven.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagDoubleClick=false;
-                if (flagFinish) {
-                    kelargan();
-                }
-                if(flagOP2){
-                    tvResult.setText("");
-                    flagOP2=false;
-                }
                 result = tvResult.getText().toString();
-
-                if(result.length()>0){
-                    if((result.substring(0,1).contains("0")&& result.length() == 1)){
-                        result = result.substring(0,result.length()-1);
+                if (result.length() > 0) {
+                    if (flagOP2) {
+                        tvResult.setText("");
+                        result = "0.";
+                        flagOP2=false;
                     }
+                    else if (isNumeric(result.substring(result.length() - 1)) && !result.contains(".")) {
+                        result = result + ".";
+                        flagOP2 = false;
+                    }
+
                 }
-                result = result+"7";
+
                 tvResult.setText(result);
-            }
-        });
-
-        btnEight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagDoubleClick=false;
-                if (flagFinish) {
-                    kelargan();
-                }
-                if(flagOP2){
-                    tvResult.setText("");
-                    flagOP2=false;
-                }
-                result = tvResult.getText().toString();
-                if(result.length()>0){
-                    if((result.substring(0,1).contains("0")&& result.length() == 1)){
-                        result = result.substring(0,result.length()-1);
-                    }
-                }
-                result = result+"8";
-                tvResult.setText(result);
-            }
-        });
-
-        btnNine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagDoubleClick=false;
-                if (flagFinish) {
-                    kelargan();
-                }
-                if(flagOP2){
-                    tvResult.setText("");
-                    flagOP2=false;
-                }
-                result = tvResult.getText().toString();
-                if(result.length()>0){
-                    if((result.substring(0,1).contains("0")&& result.length() == 1)){
-                        result = result.substring(0,result.length()-1);
-                    }
-                }
-                result = result+"9";
-                tvResult.setText(result);
-            }
-        });
-
-        btnMulti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagFinish=false;
-                flagOP2=true;
-                if(!flagDoubleClick){
-                    if(flagFirst){
-                        operand1 = Double.parseDouble(tvResult.getText().toString());
-                        flagFirst=false;
-                        flagDoubleClick=false;
-                    }
-                    else {
-                        operand2 = Double.parseDouble(tvResult.getText().toString());
-                        hitung(operand1,operand2);
-                        operand1=Double.parseDouble(tvResult.getText().toString());
-                        operand2=0.0;
-                        flagDoubleClick=true;
-                    }
-                }
-                tvOperator.setText("*");
-                flagMulti = true;
-                flagAdd = false;
-                flagMinus = false;
-                flagDivide = false;
-
-            }
-        });
-
-        btnFour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagDoubleClick=false;
-                if (flagFinish) {
-                    kelargan();
-                }
-                if(flagOP2){
-                    tvResult.setText("");
-                    flagOP2=false;
-                }
-                result = tvResult.getText().toString();
-                if(result.length()>0){
-                    if((result.substring(0,1).contains("0")&& result.length() == 1)){
-                        result = result.substring(0,result.length()-1);
-                    }
-                }
-                result = result+"4";
-                tvResult.setText(result);
-            }
-        });
-
-        btnFive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagDoubleClick=false;
-                if (flagFinish) {
-                    kelargan();
-                }
-                if(flagOP2){
-                    tvResult.setText("");
-                    flagOP2=false;
-                }
-                result = tvResult.getText().toString();
-                if(result.length()>0){
-                    if((result.substring(0,1).contains("0")&& result.length() == 1)){
-                        result = result.substring(0,result.length()-1);
-                    }
-                }
-                result = result+"5";
-                tvResult.setText(result);
-            }
-        });
-
-        btnSix.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagDoubleClick=false;
-                if (flagFinish) {
-                    kelargan();
-                }
-                if(flagOP2){
-                    tvResult.setText("");
-                    flagOP2=false;
-                }
-                result = tvResult.getText().toString();
-                if(result.length()>0){
-                    if((result.substring(0,1).contains("0")&& result.length() == 1)){
-                        result = result.substring(0,result.length()-1);
-                    }
-                }
-                result = result+"6";
-                tvResult.setText(result);
-            }
-        });
-
-        btnMinus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagFinish=false;
-                flagOP2=true;
-                if(!flagDoubleClick){
-                    if(flagFirst){
-                        operand1 = Double.parseDouble(tvResult.getText().toString());
-                        flagFirst=false;
-                        flagDoubleClick=false;
-                    }
-                    else {
-                        operand2 = Double.parseDouble(tvResult.getText().toString());
-                        hitung(operand1,operand2);
-                        operand1=Double.parseDouble(tvResult.getText().toString());
-                        operand2=0.0;
-                        flagDoubleClick=true;
-                    }
-                }
-                tvOperator.setText("-");
-                flagMinus=true;
-                flagAdd = false;
-                flagDivide = false;
-                flagMulti = false;
-
-            }
-        });
-
-        btnOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagDoubleClick=false;
-                if (flagFinish) {
-                    kelargan();
-                }
-                if(flagOP2){
-                    tvResult.setText("");
-                    flagOP2=false;
-                }
-                result = tvResult.getText().toString();
-                if(result.length()>0){
-                    if((result.substring(0,1).contains("0")&& result.length() == 1)){
-                        result = result.substring(0,result.length()-1);
-                    }
-                }
-                result = result+"1";
-                tvResult.setText(result);
-            }
-        });
-
-        btnTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagDoubleClick=false;
-                if (flagFinish) {
-                    kelargan();
-                }
-                if(flagOP2){
-                    tvResult.setText("");
-                    flagOP2=false;
-                }
-                result = tvResult.getText().toString();
-                if(result.length()>0){
-                    if((result.substring(0,1).contains("0")&& result.length() == 1)){
-                        result = result.substring(0,result.length()-1);
-                    }
-                }
-                result = result+"2";
-                tvResult.setText(result);
-            }
-        });
-
-        btnThree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                flagDoubleClick=false;
-                if (flagFinish) {
-                    kelargan();
-                }
-                if(flagOP2){
-                    tvResult.setText("");
-                    flagOP2=false;
-                }
-                result = tvResult.getText().toString();
-                if(result.length()>0){
-                    if((result.substring(0,1).contains("0")&& result.length() == 1)){
-                        result = result.substring(0,result.length()-1);
-                    }
-                }
-                result = result+"3";
-                tvResult.setText(result);
-            }
-        });
-
-        btnPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                 flagFinish=false;
-
-                Log.d("plus","Flag Double click : "+flagDoubleClick);
-                Log.d("plus","Flagfirst : "+flagFirst);
-                if(!flagDoubleClick){
-                    if(flagFirst){
-                        operand1 = Double.parseDouble(tvResult.getText().toString());
-                        flagFirst=false;
-                        flagDoubleClick=false;
-                        flagOP2=true;
-                    }
-                    else {
-                        Log.d("plus","operand 2 : "+Double.toString(operand2));
-                        operand2 = Double.parseDouble(tvResult.getText().toString());
-                        hitung(operand1,operand2);
-
-                        operand1=Double.parseDouble(tvResult.getText().toString());
-                        operand2=0.0;
-                        flagDoubleClick=true;
-                    }
-                }
-                tvOperator.setText("+");
-                flagAdd=true;
-                flagMinus = false;
-                flagDivide = false;
-                flagMulti = false;
-
-
             }
         });
 
@@ -437,14 +137,14 @@ public class MainActivity extends AppCompatActivity {
                     result = Double.toString(Temp);
                     operand1 = Temp;
                     flagDoubleClick = false;
-                    flagFinish=false;
+                    flagFinish = false;
                     flagOP2 = true;
-                    flagFirst=true;
+                    flagFirst = true;
                 }
-                else if(Double.parseDouble(result)==0.0){
+                else if(Double.parseDouble(result) == 0.0){
                     Log.d("reverse","masuk gan");
                 }
-                else if(!flagDoubleClick&&flagOP2){
+                else if(!flagDoubleClick && flagOP2){
                     Log.d("reverse","masuk bos");
                 }
                 else {
@@ -457,54 +157,123 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnZero.setOnClickListener(new View.OnClickListener() {
+        btnDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flagDoubleClick=false;
-                if (flagFinish) {
-                    kelargan();
-                }
-                if(flagOP2){
-                    tvResult.setText("");
-                    flagOP2=false;
-                }
-                result = tvResult.getText().toString();
-                if(result.length()>0){
-                    if((result.substring(0,1).contains("0")&& result.length() == 1)){
-                        result = result.substring(0,result.length()-1);
+                flagFinish = false;
+                flagOP2 = true;
+                if(!flagDoubleClick){
+                    if(flagFirst){
+                        operand1 = Double.parseDouble(tvResult.getText().toString());
+                        flagFirst = false;
+                        flagDoubleClick = false;
+                    }
+                    else {
+                        operand2 = Double.parseDouble(tvResult.getText().toString());
+                        hitung(operand1,operand2);
+                        operand1 = Double.parseDouble(tvResult.getText().toString());
+                        operand2 = 0.0;
+                        flagDoubleClick = true;
                     }
                 }
-                result = result+"0";
-                tvResult.setText(result);
+                tvOperator.setText("/");
+                flagAdd = false;
+                flagMinus = false;
+                flagDivide = true;
+                flagMulti = false;
             }
         });
 
-        btnComma.setOnClickListener(new View.OnClickListener() {
+        btnMulti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result = tvResult.getText().toString();
-
-                if(result.length()>0) {
-                    if(flagOP2){
-                        tvResult.setText("");
-                        result = "0.";
-                        flagOP2=false;
+                flagFinish = false;
+                flagOP2 = true;
+                if(!flagDoubleClick){
+                    if(flagFirst){
+                        operand1 = Double.parseDouble(tvResult.getText().toString());
+                        flagFirst = false;
+                        flagDoubleClick = false;
                     }
-                    else if (isNumeric(result.substring(result.length() - 1))&&!result.contains(".")) {
-                        result = result+".";
-                        flagOP2=false;
+                    else {
+                        operand2 = Double.parseDouble(tvResult.getText().toString());
+                        hitung(operand1,operand2);
+                        operand1 = Double.parseDouble(tvResult.getText().toString());
+                        operand2 = 0.0;
+                        flagDoubleClick=true;
                     }
-
                 }
+                tvOperator.setText("*");
+                flagMulti = true;
+                flagAdd = false;
+                flagMinus = false;
+                flagDivide = false;
+            }
+        });
 
-                tvResult.setText(result);
+
+        btnMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagFinish = false;
+                flagOP2 = true;
+                if(!flagDoubleClick){
+                    if(flagFirst){
+                        operand1 = Double.parseDouble(tvResult.getText().toString());
+                        flagFirst = false;
+                        flagDoubleClick = false;
+                    }
+                    else {
+                        operand2 = Double.parseDouble(tvResult.getText().toString());
+                        hitung(operand1,operand2);
+                        operand1 = Double.parseDouble(tvResult.getText().toString());
+                        operand2 = 0.0;
+                        flagDoubleClick = true;
+                    }
+                }
+                tvOperator.setText("-");
+                flagMinus = true;
+                flagAdd = false;
+                flagDivide = false;
+                flagMulti = false;
+            }
+        });
+
+        btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagFinish = false;
+                Log.d("plus","Flag Double click : "+flagDoubleClick);
+                Log.d("plus","Flagfirst : "+flagFirst);
+                if(!flagDoubleClick){
+                    if(flagFirst){
+                        operand1 = Double.parseDouble(tvResult.getText().toString());
+                        flagFirst = false;
+                        flagDoubleClick = false;
+                        flagOP2 = true;
+                    }
+                    else {
+                        Log.d("plus","operand 2 : "+Double.toString(operand2));
+                        operand2 = Double.parseDouble(tvResult.getText().toString());
+                        hitung(operand1,operand2);
+
+                        operand1=Double.parseDouble(tvResult.getText().toString());
+                        operand2=0.0;
+                        flagDoubleClick=true;
+                    }
+                }
+                tvOperator.setText("+");
+                flagAdd = true;
+                flagMinus = false;
+                flagDivide = false;
+                flagMulti = false;
             }
         });
 
         btnEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flagOP2=true;
+                flagOP2 = true;
                 if(!flagDoubleClick){
                     if(flagFirst){
                         operand1 = Double.parseDouble(tvResult.getText().toString());
@@ -524,7 +293,227 @@ public class MainActivity extends AppCompatActivity {
                     }
                     flagFinish = true;
                 }
+            }
+        });
 
+        btnNine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagDoubleClick = false;
+                if (flagFinish) {
+                    kelargan();
+                }
+                if(flagOP2){
+                    tvResult.setText("");
+                    flagOP2 = false;
+                }
+                result = tvResult.getText().toString();
+                if(result.length() > 0){
+                    if((result.substring(0,1).contains("0") && result.length() == 1)){
+                        result = result.substring(0,result.length()-1);
+                    }
+                }
+                result = result + "9";
+                tvResult.setText(result);
+            }
+        });
+
+        btnEight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagDoubleClick = false;
+                if (flagFinish) {
+                    kelargan();
+                }
+                if(flagOP2){
+                    tvResult.setText("");
+                    flagOP2=false;
+                }
+                result = tvResult.getText().toString();
+                if(result.length() > 0){
+                    if((result.substring(0,1).contains("0") && result.length() == 1)){
+                        result = result.substring(0,result.length()-1);
+                    }
+                }
+                result = result + "8";
+                tvResult.setText(result);
+            }
+        });
+
+        btnSeven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagDoubleClick = false;
+                if (flagFinish) {
+                    kelargan();
+                }
+                if(flagOP2){
+                    tvResult.setText("");
+                    flagOP2=false;
+                }
+                result = tvResult.getText().toString();
+
+                if(result.length() > 0){
+                    if((result.substring(0,1).contains("0") && result.length() == 1)){
+                        result = result.substring(0,result.length()-1);
+                    }
+                }
+                result = result + "7";
+                tvResult.setText(result);
+            }
+        });
+
+        btnSix.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagDoubleClick = false;
+                if (flagFinish) {
+                    kelargan();
+                }
+                if(flagOP2){
+                    tvResult.setText("");
+                    flagOP2=false;
+                }
+                result = tvResult.getText().toString();
+                if(result.length() > 0){
+                    if((result.substring(0,1).contains("0") && result.length() == 1)){
+                        result = result.substring(0,result.length()-1);
+                    }
+                }
+                result = result + "6";
+                tvResult.setText(result);
+            }
+        });
+
+        btnFive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagDoubleClick = false;
+                if (flagFinish) {
+                    kelargan();
+                }
+                if(flagOP2){
+                    tvResult.setText("");
+                    flagOP2=false;
+                }
+                result = tvResult.getText().toString();
+                if(result.length() > 0){
+                    if((result.substring(0,1).contains("0") && result.length() == 1)){
+                        result = result.substring(0,result.length()-1);
+                    }
+                }
+                result = result + "5";
+                tvResult.setText(result);
+            }
+        });
+
+        btnFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagDoubleClick = false;
+                if (flagFinish) {
+                    kelargan();
+                }
+                if(flagOP2){
+                    tvResult.setText("");
+                    flagOP2=false;
+                }
+                result = tvResult.getText().toString();
+                if(result.length() > 0){
+                    if((result.substring(0,1).contains("0") && result.length() == 1)){
+                        result = result.substring(0,result.length()-1);
+                    }
+                }
+                result = result + "4";
+                tvResult.setText(result);
+            }
+        });
+
+        btnThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagDoubleClick = false;
+                if (flagFinish) {
+                    kelargan();
+                }
+                if(flagOP2){
+                    tvResult.setText("");
+                    flagOP2=false;
+                }
+                result = tvResult.getText().toString();
+                if(result.length() > 0){
+                    if((result.substring(0,1).contains("0") && result.length() == 1)){
+                        result = result.substring(0,result.length()-1);
+                    }
+                }
+                result = result + "3";
+                tvResult.setText(result);
+            }
+        });
+
+        btnTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagDoubleClick = false;
+                if (flagFinish) {
+                    kelargan();
+                }
+                if(flagOP2){
+                    tvResult.setText("");
+                    flagOP2=false;
+                }
+                result = tvResult.getText().toString();
+                if(result.length() > 0){
+                    if((result.substring(0,1).contains("0") && result.length() == 1)){
+                        result = result.substring(0,result.length()-1);
+                    }
+                }
+                result = result + "2";
+                tvResult.setText(result);
+            }
+        });
+
+        btnOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagDoubleClick = false;
+                if (flagFinish) {
+                    kelargan();
+                }
+                if(flagOP2){
+                    tvResult.setText("");
+                    flagOP2=false;
+                }
+                result = tvResult.getText().toString();
+                if(result.length() > 0){
+                    if((result.substring(0,1).contains("0") && result.length() == 1)){
+                        result = result.substring(0,result.length()-1);
+                    }
+                }
+                result = result + "1";
+                tvResult.setText(result);
+            }
+        });
+
+        btnZero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flagDoubleClick = false;
+                if (flagFinish) {
+                    kelargan();
+                }
+                if(flagOP2){
+                    tvResult.setText("");
+                    flagOP2=false;
+                }
+                result = tvResult.getText().toString();
+                if(result.length() > 0){
+                    if((result.substring(0,1).contains("0") && result.length() == 1)){
+                        result = result.substring(0,result.length()-1);
+                    }
+                }
+                result = result + "0";
+                tvResult.setText(result);
             }
         });
     }
@@ -539,9 +528,9 @@ public class MainActivity extends AppCompatActivity {
     }
     protected void kelargan(){
         tvResult.setText("");
-        flagDoubleClick=false;
+        flagDoubleClick = false;
         flagFirst = true;
-        flagFinish=false;
+        flagFinish = false;
     }
 
     protected double hitung(double operand1, double operand2){
@@ -551,28 +540,26 @@ public class MainActivity extends AppCompatActivity {
         String resultSTR;
         if(flagAdd){
             result2 = operand1 + operand2 ;
-            flagAdd=false;
+            flagAdd = false;
         }
         if(flagDivide){
             result2 = operand1 / operand2 ;
-            flagDivide=false;
+            flagDivide = false;
         }
         if(flagMinus){
             result2 = operand1 - operand2 ;
-            flagMinus=false;
+            flagMinus = false;
         }
         if(flagMulti){
             result2 = operand1 * operand2 ;
-            flagMulti=false;
+            flagMulti = false;
         }
         resultSTR = Double.toString(result2);
         if(result2 == Math.floor(result2) && !Double.isInfinite(result2)){
-            int resultInt =(int) result2;
+            int resultInt = (int) result2;
             resultSTR = Integer.toString(resultInt);
         }
         tvResult.setText(resultSTR);
         return result2;
     }
-
-
 }
